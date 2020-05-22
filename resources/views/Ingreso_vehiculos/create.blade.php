@@ -18,16 +18,7 @@
         {!!Form::open(array('url'=>'Ingreso_vehiculos','method'=>'POST','autocomplete'=>'off'))!!}
         {{Form::token()}}
         
-        <div class="form-group">
-            <label for="Role">Placa</label>
-            <select name="id_ingreso" id="id_ingreso" class="form-control selectpicker" data-livesearch="true" required>
-                <option value="" disabled selected>Selecione La Placa:</option>
-                @foreach($vehiculos as $vehiculo)
-                <option value="{{$vehiculo->Id_Vehiculo}}">{{ $vehiculo->Placa }}</option>
-                @endforeach
-            </select>
-        </div>
-
+        
         <div class="form-group">
             <label for="fecha">Fecha Ingreso</label>
             <input type="text" name="fecha_ingreso" class="form-control" 
@@ -44,15 +35,15 @@
             
             <div class="form-group">
                 <label for="usuario">Usuario</label>
-                <input type="text" name="users_id" class="form-control" value="1" readonly>
-            </div>
+                <input type="text" name="users_id" class="form-control" value="" >
+</div>
 
             <div class="form-group">
             <label for="Role">ID Vehiculo</label>
             <select name="vehiculos_id_vehiculo" id="vehiculos_id_vehiculo" class="form-control selectpicker" data-livesearch="true" required>
                 <option value="" disabled selected>Vehiculo:</option>
                 @foreach($vehiculos as $vehiculo)
-                <option value="{{$vehiculo->Id_Vehiculo}}">{{ $vehiculo->Id_Vehiculo }}</option>
+                <option value="{{$vehiculo->Id_Vehiculo}}">{{ $vehiculo->Placa }}</option>
                 @endforeach
             </select>
         </div>

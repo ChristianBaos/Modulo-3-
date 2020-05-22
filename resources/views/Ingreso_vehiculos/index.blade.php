@@ -8,8 +8,10 @@
         <h3>Reporte Todos Los Vehiculos Ingresados <a href="\imprimirIngreso_vehiculos">
             <button class="btn btn-success">
             <span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
+            @include('Ingreso_vehiculos.search')
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,7 +35,7 @@
                  
                     <td>{{$ingreso->Estado}}</td>
                     <td>{{$ingreso->Vehiculo_Id_Vehiculo}}</td>
-                    <td>{{$ingreso->Users_Id}}</td>
+                    <td>{{$ingreso->Nombre}}</td>
                     <td>{{$ingreso->Placa}}</td>
 
                     <td>

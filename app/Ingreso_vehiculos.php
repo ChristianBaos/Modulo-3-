@@ -25,4 +25,9 @@ public function salida_vehiculos(){
     return $this->belongsTo('App\Salida_vehiculos');
 }
 
+public function usuario(){
+
+    
+}
+
 }

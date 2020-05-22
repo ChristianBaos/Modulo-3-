@@ -28,9 +28,9 @@ class Ingreso_vehiculosController extends Controller
             $query = trim($request->get('searchText'));
             $ingreso = DB::table('ingreso_vehiculos as i')
             ->join('vehiculos as v','i.Vehiculo_Id_Vehiculo', '=','v.Id_Vehiculo')
-           // ->join('salida_vehiculos as s','i.Id_Ingreso', '=','s.Ingreso_idIngreso')
-            ->Select('i.Id_Ingreso','i.Fecha_Ingreso',/*'s.Fecha_Salida',*/'i.Estado','i.Vehiculo_Id_Vehiculo','v.Placa','i.Users_Id')
-            ->where('Id_Ingreso', 'LIKE', '%' . $query . '%')->orderBy('Id_Ingreso', 'asc')->paginate(5);
+            ->join('users as u','u.Id','=','i.Users_Id')
+            ->Select('i.Id_Ingreso','i.Fecha_Ingreso','u.Nombre','i.Estado','i.Vehiculo_Id_Vehiculo','v.Placa','i.Users_Id')
+            ->where('v.Placa', 'LIKE', '%' . $query . '%')->orderBy('Id_Ingreso', 'asc')->paginate(5);
             return view('Ingreso_vehiculos.index', ["ingreso" => $ingreso, "searchText" => $query]);
         }
     }
