@@ -29,15 +29,13 @@
 
             <tr>
                 <th>Id de ingreso:</th>
-                <th>Tipo Vehiculo:</th>
                 <th>Fecha de entrada:</th>
                 <th>Estado del vehiculo</th>
                 <th>Placa:</th>
-                <th>Nombre</th>
+                <th>Tipo de vehiculo</th>
             </tr>
             <tr>
             <td>{{$idingreso}}</td>
-                <td>{{$placavehiculo}}</td>
                 <td>{{$fechaingreso}}</td>
                 <td>{{$estado}}</td>
                 <td>{{$placavehiculo}}</td>

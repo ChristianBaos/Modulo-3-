@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Ingreso_vehiculos;
 use App\Salida_vehiculos;
 use DB;
+//use App\Http\Controllers\PdfController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect as FacadesRedirect;
 
@@ -37,7 +38,7 @@ class Salida_vehiculosController extends Controller
             ->join('tipo_vehiculos as tv','tv.Id_Tipo', '=','v.table1_Id_Tipo')
             ->join('tarifa_vehiculos as t','tv.Id_Tipo', '=','t.table1_Id_Tipo')
             ->SELECT('i.Id_Ingreso','v.Placa', 'tv.Nombre', 'i.Fecha_Ingreso', 't.valor')
-            ->where('v.Placa','LIKE','%'.$query.'%')
+            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ingreso', 'asc')
             ->where('t.Estado','Activo')
             ->where('i.Estado','Activo')->paginate(10);
             //dd($Salida);
@@ -87,7 +88,7 @@ class Salida_vehiculosController extends Controller
         $tarifa->estado='Inactivo';
         $tarifa->update();
 
-        dd($total);
+  
         
         return Redirect::to('Salida_vehiculos');
     }

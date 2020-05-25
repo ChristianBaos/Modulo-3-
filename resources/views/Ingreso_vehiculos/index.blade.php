@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('contenido')
-
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <h3>Listado de ingresos <a href="/Ingreso_vehiculos/create"><button class="btn btn-success fa fa-car">Nuevo</button></a>
+        <h3>Listado de ingresos 
+            <a href="/Ingreso_vehiculos/create"><button class="btn btn-success fa fa-car">Nuevo</button></a>
         </h3>
         <h3>Reporte Todos Los Vehiculos Ingresados <a href="\imprimirIngreso_vehiculos">
             <button class="btn btn-success">
@@ -28,22 +28,22 @@
                     <th>Opciones</th>
 
                 </thead>
-                @foreach ($ingreso as $ingreso)
+                @foreach ($ingreso as $ingresos)
                 <tr>
-                    <td>{{$ingreso->Id_Ingreso}}</td>
-                    <td>{{$ingreso->Fecha_Ingreso}}</td>
+                    <td>{{$ingresos->Id_Ingreso}}</td>
+                    <td>{{$ingresos->Fecha_Ingreso}}</td>
                  
-                    <td>{{$ingreso->Estado}}</td>
-                    <td>{{$ingreso->Vehiculo_Id_Vehiculo}}</td>
-                    <td>{{$ingreso->Nombre}}</td>
-                    <td>{{$ingreso->Placa}}</td>
+                    <td>{{$ingresos->Estado}}</td>
+                    <td>{{$ingresos->Vehiculo_Id_Vehiculo}}</td>
+                    <td>{{$ingresos->Nombre}}</td>
+                    <td>{{$ingresos->Placa}}</td>
 
                     <td>
-                        <a href="{{URL::action('Ingreso_vehiculosController@edit',$ingreso->Id_Ingreso)}}">
+                        <a href="{{URL::action('Ingreso_vehiculosController@edit',$ingresos->Id_Ingreso)}}">
                             <button class="btn btn-info">Editar</button></a>
-                        <a href="" data-target="#modal-delete-{{$ingreso->Id_Ingreso}}" data-toggle="modal">
+                        <a href="" data-target="#modal-delete-{{$ingresos->Id_Ingreso}}" data-toggle="modal">
                             <button class="btn btn-danger">Eliminar</button></a>
-                            <a href="/imprimirIngresoEspecifico/{{$ingreso->Id_Ingreso}}">
+                            <a href="/imprimirIngresoEspecifico/{{$ingresos->Id_Ingreso}}">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>
                     </td>
                 </tr>
@@ -51,6 +51,8 @@
                 @endforeach
             </table>
         </div>
+        {{$ingreso->render()}}
     </div>
+    
 </div>
 @endsection

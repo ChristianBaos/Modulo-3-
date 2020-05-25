@@ -1,5 +1,5 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$ingreso->Id_Ingreso}}"> 
-{{Form::Open(array('action'=>array('Ingreso_vehiculosController@destroy',$ingreso->Id_Ingreso),'method'=>'delete'))}}
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{$ingresos->Id_Ingreso}}"> 
+{{Form::Open(array('action'=>array('Ingreso_vehiculosController@destroy',$ingresos->Id_Ingreso),'method'=>'delete'))}}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

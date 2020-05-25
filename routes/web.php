@@ -28,7 +28,7 @@ Route::get('imprimirVehiculoEspecifico/{Id_Vehiculo}','PdfController@imprimirVeh
 Route::get('imprimirIngreso_vehiculos','PdfController@imprimirIngreso_vehiculos')->name('imprimirIngreso_vehiculos');
 Route::get('imprimirIngresoEspecifico/{Id_Ingreso}','PdfController@imprimirIngresoEspecifico')->name('imprimirIngresoEspecifico');
 
-Route::get('imprimirTicket','PdfController@imprimirTicket')->name('imprimirTicket');
+Route::get('imprimirSalida/{Id_Ingreso}','PdfController@imprimirSalida')->name('imprimirSalida');
 
 
 Route::get('Salida_vehiculos/{Placa}/{Id_Ingreso}/{valor}','Salida_vehiculosController@generarSalida')->name('Salida_vehiculos');

@@ -31,10 +31,14 @@
                     <td>
                     <a href="{{route('Salida_vehiculos',[$salida->Placa,$salida->Id_Ingreso,$salida->valor])}}">
                         <button class="btn btn-info"><span class="glyphicon glyphicon-download-alt"></span>Generar Salida</button></a>
+                        
+                        <a href="/imprimirSalida/{{$salida->Id_Ingreso}}">
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>  
                     </td>
 
                 </tr>@endforeach
             </table>
         </div>
+        {{$Salida_vehiculos->render()}}
     </div>
 </div>@endsection

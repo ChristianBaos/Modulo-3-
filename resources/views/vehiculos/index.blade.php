@@ -41,7 +41,7 @@
                 @endforeach
             </table>
         </div>
-
+        {{$vehiculos->render()}}
     </div>
 </div>
 @endsection
