@@ -32,7 +32,7 @@
 
                             <button class="btn btn-success"> <span class="glyphicon glyphicon-refresh"></span>Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$vehiculo->Id_Vehiculo}}" data-toggle="modal">
-                            <button class="btn btn-danger"> <span class="glyphicon glyphicon-trash"> </span>Retirar Vehiculo
+                            <button class="btn btn-danger"> <span class="glyphicon glyphicon-trash"> </span>Eliminar
                             </button></a>
                             <a href="/imprimirVehiculoEspecifico/{{$vehiculo->Id_Vehiculo}}">
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>

@@ -28,16 +28,16 @@
         <table class="table table-bordered table-striped table-hover">
 
             <tr>
-                <th>Id de ingreso:</th>
+                <th># ingreso:</th>
                 <th>Placa :</th>
-                <th>Fecha de entrada:</th>
-                <th>Fecha de salida:</th>
-                <th>Tipo de vehiculo:</th>
-                <th>Total a pagar</th>
+                <th>Fecha Entrada:</th>
+                <th>Fecha Salida:</th>
+                <th>Vehiculo:</th>
+                <th>Total</th>
             </tr>
             <tr>
-            <td>{{$idingreso}}</td>
-            <td>{{$placavehiculo}}</td>
+                <td>{{$idingreso}}</td>
+                <td>{{$placavehiculo}}</td>
                 <td>{{$fechaingreso}}</td>
                 <td>{{$fechasalida}}</td>
                 <td>{{$tiponombre}}</td>

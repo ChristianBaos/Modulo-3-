@@ -258,10 +258,11 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href=""><i class=" fa fa-home "></i> <span>Inicio</span></a></li>
+        <li class="active"><a href="http://127.0.0.1:8000"><i class=" fa fa-home "></i> <span>Inicio</span></a></li>
         <li><a href="vehiculos"><i class=" fa fa-car" > </i> <span>Vehiculos</span></a></li>
-        <li><a href="Ingreso_vehiculos"><i class=" fa fa-car" > </i> <span>Ingreso del vehiculos</span></a></li>
+        <li><a href="Ingreso_vehiculos"><i class="fa fa-motorcycle"></i> <span>Ingreso del vehiculos</span></a></li>
         <li><a href="Salida_vehiculos"><i class=" fa fa-car" > </i> <span>Salida de Vehiculos</span></a></li>
+        <li><a href="Vehiculos_retirados"><i class="glyphicon glyphicon-file" > </i> <span> Vehiculos Retirados</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-cog"></i> <span>Opciones</span>
             <span class="pull-right-container">

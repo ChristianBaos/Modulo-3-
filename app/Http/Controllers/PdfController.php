@@ -99,6 +99,20 @@ class PdfController extends Controller
         return $pdf->download('Ingreso Especifico.pdf');  
     }
 
+    public function imprimirVehiculosRetirados(Request $request)
+    {
+
+        $salida = DB::table('salida_vehiculos as s')
+        ->join('ingreso_vehiculos as i', 'i.Id_Ingreso', '=', 's.Ingreso_idIngreso')
+        ->join('vehiculos as v', 'v.Id_Vehiculo', '=', 'i.Vehiculo_Id_Vehiculo')
+        ->join('tipo_vehiculos as tv', 'tv.Id_Tipo', '=', 'v.table1_Id_Tipo')
+        ->select('i.Id_Ingreso','v.Placa','i.Fecha_Ingreso','s.Fecha_salida','tv.Nombre','s.Total')->get();
+        $pdf = \PDF::loadView('Pdf.vehiculos_retiradosPDF', ['salida' => $salida]);
+        $pdf->setPaper('carta', 'A4');
+        return $pdf->download('Listado de Vehiculos Retirados.pdf');
+    }
+
+    //SALIDA ESPECIFICA //
     public function imprimirSalida(Request $request, $id_ingreso)
     {
 
@@ -109,12 +123,11 @@ class PdfController extends Controller
         ->select('i.Id_Ingreso','v.Placa','i.Fecha_Ingreso','s.Fecha_salida','tv.Nombre','s.Total')
         ->where('i.Id_Ingreso', '=', $id_ingreso)->get();
        
-       dd($salidaespecifico);
         
         foreach ($salidaespecifico as $sa) {
             $placavehiculo = $sa->Placa;
             $fechaingreso = $sa->Fecha_Ingreso;
-            $fechasalida = $sa->Fecha_Salida;
+            $fechasalida = $sa->Fecha_salida;
             $idingreso = $sa->Id_Ingreso;
             $tiponombre = $sa->Nombre;
             $valortotal = $sa->Total;

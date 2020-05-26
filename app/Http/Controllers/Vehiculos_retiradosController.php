@@ -7,94 +7,44 @@ use Illuminate\Support\Facades\Redirect;
 use App\Ingreso_vehiculos;
 use App\Salida_vehiculos;
 use DB;
-//use App\Http\Controllers\PdfController;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect as FacadesRedirect;
 
-class Salida_vehiculosController extends Controller
+class Vehiculos_retiradosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /*
-    public function index()
-    {
-        $Salida_vehiculos = Salida_vehiculos::all();
 
-        return view('Salida_vehiculos.index')->with('Salida_vehiculos', $Salida_vehiculos);
-    }*/
-
-    
-
+     //VISUALIZAR LOS VEHICULOS RETIRADOS CON EL TOTAL A PAGAR//
     public function index(Request $request)
     {
         if ($request){
             
             $query=trim($request->get('searchText'));
-            $salida=DB::table('vehiculos as v')
+            $retiro=DB::table('vehiculos as v')
             ->join('ingreso_vehiculos as i','i.Vehiculo_Id_Vehiculo', '=','v.Id_Vehiculo')
             ->join('tipo_vehiculos as tv','tv.Id_Tipo', '=','v.table1_Id_Tipo')
             ->join('tarifa_vehiculos as t','tv.Id_Tipo', '=','t.table1_Id_Tipo')
-            ->SELECT('i.Id_Ingreso','v.Placa', 'tv.Nombre', 'i.Fecha_Ingreso', 't.valor')
-            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ingreso', 'asc')
+            ->join('salida_vehiculos as s','s.Ingreso_idIngreso', '=','i.Id_Ingreso')
+            ->SELECT('s.Id_Ticket','i.Id_Ingreso','v.Placa', 'tv.Nombre', 'i.Fecha_Ingreso','s.Fecha_Salida', 's.Total')
+            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ticket', 'asc')
             ->where('t.Estado','Activo')
-            ->where('i.Estado','Activo')->paginate(10);
+            ->where('i.Estado','Inactivo')->paginate(10);
             //dd($Salida);
-         return view('Salida_vehiculos.index',["Salida_vehiculos"=>$salida,"searchText"=>$query]);//
+         return view('Vehiculos_retirados.index',["Vehiculos_retirados"=>$retiro,"searchText"=>$query]);//
         }
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     // CREAR LA SALIDA EN EL CREATE
-     /*
-    public function create($salida,$Id_Ingreso,$valor)
+    public function create()
     {
-        $mytime=Carbon::now('America/Bogota');
-        $tarifa=Ingreso_vehiculos::findOrFail($Id_Ingreso);
-        $horas=$salida->Fecha_Ingreso->diffinHours();
-        
-        $total= $horas*$valor;
-        $salida= new Salida_vehiculos;
-        $salida->Fecha_Salida=$mytime->toDateTimeString();
-        $salida->total=$total;
-        $salida->Ingreso_idIngreso=$Id_Ingreso;
-        $salida->save();
-        $tarifa->estado='Inactivo';
-        $tarifa->update();
-
-        dd($salida);
-    }*/
-
-    
-    public function generarSalida($salida,$Id_Ingreso,$valor)
-    {
-        $mytime=Carbon::now('America/Bogota');
-        $tarifa=Ingreso_vehiculos::findOrFail($Id_Ingreso);
-        $horas=$tarifa->Fecha_Ingreso->diffinHours();
-        $total= $horas*$valor;
-
-        $salida= new Salida_vehiculos;
-        $salida->Fecha_Salida=$mytime->toDateTimeString();
-        $salida->Total=$total;
-        $salida->Ingreso_idIngreso=$Id_Ingreso;
-        $salida->save();
-        $tarifa->estado='Inactivo';
-        $tarifa->update();
-
-        
-        return Redirect::to('Salida_vehiculos');
+        //
     }
-
-    
 
     /**
      * Store a newly created resource in storage.

@@ -40,9 +40,9 @@
 
                     <td>
                         <a href="{{URL::action('Ingreso_vehiculosController@edit',$ingresos->Id_Ingreso)}}">
-                            <button class="btn btn-info">Editar</button></a>
+                            <button class="btn btn-info"><span class="glyphicon glyphicon-refresh">Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$ingresos->Id_Ingreso}}" data-toggle="modal">
-                            <button class="btn btn-danger">Eliminar</button></a>
+                            <button class="btn btn-danger"> <span class="glyphicon glyphicon-trash">Eliminar</button></a>
                             <a href="/imprimirIngresoEspecifico/{{$ingresos->Id_Ingreso}}">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>
                     </td>
