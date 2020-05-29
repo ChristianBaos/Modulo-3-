@@ -7,12 +7,20 @@
                 <button class="btn btn-success fa fa-car">Nuevo</button></a></h3>
         <h3>Reporte Todos Los Vehiculos <a href="\imprimirVehiculos"><button class="btn btn-info">
         <span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
-
+        <style>
+            td {
+                background-color: #2a2f34;
+            }
+            thead{
+                background-color: #b51130;
+                
+            }
+        </style>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="table-responsive">
+        <div class="table">
             <table class="table table-striped table-bordered table-condensed table-hover ">
                 <thead>
                     <th>Id_Vehiculo</th>

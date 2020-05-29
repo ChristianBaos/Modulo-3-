@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Ingreso_vehiculos;
 use App\Salida_vehiculos;
 use DB;
+use Barryvdh\DomPDF\PDF;
 //use App\Http\Controllers\PdfController;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect as FacadesRedirect;
@@ -38,7 +39,7 @@ class Salida_vehiculosController extends Controller
             ->join('tipo_vehiculos as tv','tv.Id_Tipo', '=','v.table1_Id_Tipo')
             ->join('tarifa_vehiculos as t','tv.Id_Tipo', '=','t.table1_Id_Tipo')
             ->SELECT('i.Id_Ingreso','v.Placa', 'tv.Nombre', 'i.Fecha_Ingreso', 't.valor')
-            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ingreso', 'asc')
+            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ingreso', 'desc')
             ->where('t.Estado','Activo')
             ->where('i.Estado','Activo')->paginate(10);
             //dd($Salida);
@@ -90,6 +91,37 @@ class Salida_vehiculosController extends Controller
         $tarifa->estado='Inactivo';
         $tarifa->update();
 
+        $salidaespecifico = DB::table('salida_vehiculos as s')
+        ->join('ingreso_vehiculos as i', 'i.Id_Ingreso', '=', 's.Ingreso_idIngreso')
+        ->join('vehiculos as v', 'v.Id_Vehiculo', '=', 'i.Vehiculo_Id_Vehiculo')
+        ->join('tipo_vehiculos as tv', 'tv.Id_Tipo', '=', 'v.table1_Id_Tipo')
+        ->select('i.Id_Ingreso','v.Placa','i.Fecha_Ingreso','s.Fecha_salida','tv.Nombre','s.Total')
+        ->where('i.Id_Ingreso', '=', $Id_Ingreso)->get();
+       
+        
+        foreach ($salidaespecifico as $sa) {
+            $placavehiculo = $sa->Placa;
+            $fechaingreso = $sa->Fecha_Ingreso;
+            $fechasalida = $sa->Fecha_salida;
+            $idingreso = $sa->Id_Ingreso;
+            $tiponombre = $sa->Nombre;
+            $valortotal = $sa->Total;
+        }
+       
+
+        $pdf = \PDF::loadView('Pdf.salida_vehiculosPDF', [
+            'placavehiculo' => $placavehiculo,
+            'fechaingreso' => $fechaingreso,
+            'fechasalida' => $fechasalida,
+            'idingreso' => $idingreso,
+            'tiponombre' => $tiponombre,
+            'valortotal' => $valortotal,
+            
+        ]);
+
+        
+        $pdf->setPaper('carta', 'A4');
+        return $pdf->download('Salida Especifico.pdf');
         
         return Redirect::to('Salida_vehiculos');
     }

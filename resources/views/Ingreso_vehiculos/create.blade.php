@@ -27,11 +27,9 @@
 
         <div class="form-group">
             <label for="estado">Estado</label>
-            <select type="text" name="estado" class="form-control" placeholder="Estado. Activo ó Inactivo">
-            <option value="" disabled selected>Opcion de Estado:</option>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-            </select>
+            <input readonly  type="text" value="Activo" name="estado" class="form-control" placeholder="Estado. Activo ó Inactivo">
+            
+   
             
             <div class="form-group">
                 <label for="usuario">Usuario</label>

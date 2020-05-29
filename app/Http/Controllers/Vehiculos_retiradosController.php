@@ -28,7 +28,7 @@ class Vehiculos_retiradosController extends Controller
             ->join('tarifa_vehiculos as t','tv.Id_Tipo', '=','t.table1_Id_Tipo')
             ->join('salida_vehiculos as s','s.Ingreso_idIngreso', '=','i.Id_Ingreso')
             ->SELECT('s.Id_Ticket','i.Id_Ingreso','v.Placa', 'tv.Nombre', 'i.Fecha_Ingreso','s.Fecha_Salida', 's.Total')
-            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ticket', 'asc')
+            ->where('v.Placa','LIKE','%'.$query.'%')->orderBy('Id_Ticket', 'desc')
             ->where('t.Estado','Activo')
             ->where('i.Estado','Inactivo')->paginate(10);
             //dd($Salida);

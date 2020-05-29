@@ -30,7 +30,9 @@ class Ingreso_vehiculosController extends Controller
             ->join('vehiculos as v','i.Vehiculo_Id_Vehiculo', '=','v.Id_Vehiculo')
             ->join('users as u','u.Id','=','i.Users_Id')
             ->Select('i.Id_Ingreso','i.Fecha_Ingreso','u.Nombre','i.Estado','i.Vehiculo_Id_Vehiculo','v.Placa','i.Users_Id')
-            ->where('v.Placa', 'LIKE', '%' . $query . '%')->orderBy('Id_Ingreso', 'asc')->paginate(5);
+            ->where('v.Placa', 'LIKE', '%' . $query . '%')
+            ->where('i.Estado','Activo')
+            ->orderBy('Id_Ingreso', 'desc')->paginate(5);
             return view('Ingreso_vehiculos.index', ["ingreso" => $ingreso, "searchText" => $query]);
         }
     }

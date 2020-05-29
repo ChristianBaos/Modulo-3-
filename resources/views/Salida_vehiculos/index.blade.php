@@ -6,6 +6,17 @@
         <h3>Generar Ticket
 
             @include('Salida_vehiculos.search')
+            <style>
+            td  {
+                background-color: #2a2f34;
+            }
+
+            thead{
+                background-color: #b51130;
+                
+            }
+            
+        </style>
     </div>
 </div>
 <div class="row">
@@ -30,7 +41,7 @@
 
                     <td>
                     <a href="{{route('Salida_vehiculos',[$salida->Placa,$salida->Id_Ingreso,$salida->valor])}}">
-                        <button class="btn btn-info"><span class=" glyphicon glyphicon-usd"></span>Generar Salida</button></a>
+                        <button class="btn btn-info"><span class=" glyphicon glyphicon-usd"></span>Retirar Vehiculo</button></a>
                         
                     </td>
 

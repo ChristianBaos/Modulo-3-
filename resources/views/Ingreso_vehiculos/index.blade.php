@@ -2,13 +2,22 @@
 @section('contenido')
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <h3>Listado de ingresos 
-            <a href="/Ingreso_vehiculos/create"><button class="btn btn-success fa fa-car">Nuevo</button></a>
+        <h3>Listado de ingresos
+            <a href="/Ingreso_vehiculos/create"><button class="btn btn-success fa fa-car"> Nuevo Vehiculo</button></a>
         </h3>
         <h3>Reporte Todos Los Vehiculos Ingresados <a href="\imprimirIngreso_vehiculos">
-            <button class="btn btn-success">
-            <span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
-            @include('Ingreso_vehiculos.search')
+                <button class="btn btn-success">
+                    <span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
+        <style>
+            td {
+                background-color: #2a2f34;
+            }
+            thead{
+                background-color: #b51130;
+                
+            }
+        </style>
+        @include('Ingreso_vehiculos.search')
     </div>
 </div>
 
@@ -20,7 +29,7 @@
                 <thead>
                     <th>Id_Ingreso</th>
                     <th>Fecha Ingreso</th>
-                 
+
                     <th>Estado</th>
                     <th>Id Vehiculo</th>
                     <th>Usuario</th>
@@ -32,7 +41,7 @@
                 <tr>
                     <td>{{$ingresos->Id_Ingreso}}</td>
                     <td>{{$ingresos->Fecha_Ingreso}}</td>
-                 
+
                     <td>{{$ingresos->Estado}}</td>
                     <td>{{$ingresos->Vehiculo_Id_Vehiculo}}</td>
                     <td>{{$ingresos->Nombre}}</td>
@@ -43,7 +52,7 @@
                             <button class="btn btn-info"><span class="glyphicon glyphicon-refresh">Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$ingresos->Id_Ingreso}}" data-toggle="modal">
                             <button class="btn btn-danger"> <span class="glyphicon glyphicon-trash">Eliminar</button></a>
-                            <a href="/imprimirIngresoEspecifico/{{$ingresos->Id_Ingreso}}">
+                        <a href="/imprimirIngresoEspecifico/{{$ingresos->Id_Ingreso}}">
                             <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>
                     </td>
                 </tr>
@@ -53,6 +62,6 @@
         </div>
         {{$ingreso->render()}}
     </div>
-    
+
 </div>
 @endsection

@@ -28,10 +28,11 @@ class VehiculosController extends Controller
     {
         if ($request) {
             $query = trim($request->get('searchText'));
+           
             $vehiculos = DB::table('vehiculos as v')
             ->join('tipo_vehiculos as t','t.Id_Tipo', '=','v.table1_Id_Tipo')
             ->Select('v.Id_Vehiculo','v.Placa','v.table1_Id_Tipo','t.Nombre')
-            ->where('Placa', 'LIKE', '%' . $query . '%')->orderBy('Id_Vehiculo', 'asc')->paginate(5);
+            ->where('Placa', 'LIKE', '%' . $query . '%')->orderBy('Id_Vehiculo', 'desc')->paginate(5);
             return view('Vehiculos.index', ["vehiculos" => $vehiculos, "searchText" => $query]);
         }
     }

@@ -1,12 +1,37 @@
 @extends ('layouts.layout')
 @section ('contenido')
+<a href="\imprimirVehiculosRetirados">
+    <button class="btn btn-success">
+        <span class="glyphicon glyphicon-download-alt">
+        </span> Generar Reporte general</button></a> 
+        
+        <a href="\imprimirSalidaRango"><button class="btn btn-warning">
+        <span class="glyphicon glyphicon-download-alt">
+        </span> Generar PDF por rango</button></a></h3>
 
+<div class="form-group col-lg-5">
+
+    <label for="usuario">Fecha Inicio</label>
+    <input type="date" name="fecha_salida" class="form-control" value="f2">
+
+    <label for="usuario">Fecha Fin</label>
+    <input type="date" name="fecha_salida" class="form-control" value="f1">
+
+</div>
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <h3>Vehiculos Retirados
-        <h3>Reporte Todos Los Vehiculos Retirados <a href="\imprimirVehiculosRetirados">
-            <button class="btn btn-success">
-            <span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
+
+            <style>
+                td {
+                    background-color: #2a2f34;
+                }
+
+                thead {
+                    background-color: #b51130;
+
+                }
+            </style>
 
             @include('Vehiculos_retirados.search')
     </div>
@@ -38,7 +63,7 @@
 
                     <td>
                         <a href="/imprimirSalida/{{$retiro->Id_Ingreso}}">
-                            <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a>
+                            <button class="btn btn-warning"><span class="glyphicon glyphicon-download-alt"></span>Generar Ticket</button></a>
                     </td>
 
                 </tr>@endforeach

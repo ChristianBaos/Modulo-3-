@@ -33,7 +33,7 @@
                 <th>Fecha Entrada:</th>
                 <th>Fecha Salida:</th>
                 <th>Vehiculo:</th>
-                <th>Total</th>
+                <th>Total a pagar</th>
             </tr>
             <tr>
                 <td>{{$idingreso}}</td>

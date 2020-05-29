@@ -33,6 +33,8 @@ Route::get('imprimirIngresoEspecifico/{Id_Ingreso}','PdfController@imprimirIngre
 Route::get('imprimirVehiculosRetirados','PdfController@imprimirVehiculosRetirados')->name('imprimirVehiculosRetirados');
 Route::get('imprimirSalida/{Id_Ingreso}','PdfController@imprimirSalida')->name('imprimirSalida');
 
+Route::get('imprimirSalidaRango','PdfController@imprimirSalidaRango')->name('imprimirSalidaRango');
+
 
 Route::get('Salida_vehiculos/{Placa}/{Id_Ingreso}/{valor}','Salida_vehiculosController@generarSalida')->name('Salida_vehiculos');
 
