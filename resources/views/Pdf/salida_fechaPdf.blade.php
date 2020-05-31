@@ -14,6 +14,12 @@
         <h1 class="text-center">Parqueadero Vida</h1>
         <h3 class="text-center">NIT: 123456-1</h3>
         <h3 class="text-center">Tel. 555555</h3><br> <br> <br>
+
+        @php
+        $suma=0;
+        $contador=0;
+        @endphp
+
         <table class="table table-bordered table-striped table-hover">
             <tr>
                 <th># ingreso:</th>
@@ -30,7 +36,18 @@
                 <td>{{$sa->Fecha_salida}}</td>
                 <td>{{$sa->Nombre}}</td>
                 <td>{{$sa->Total}}</td>
+
+                @php 
+                $suma= $suma + $sa->Total;
+               
+                @endphp
             </tr>@endforeach
+
+            <tr>
+                <td colspan="5">Ingresos</td>
+                <td>{{$suma}}</td>
+                
+            </tr>
         </table>
 
 

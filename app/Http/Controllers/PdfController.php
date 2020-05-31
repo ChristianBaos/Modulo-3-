@@ -157,15 +157,14 @@ class PdfController extends Controller
         return $pdf->download('Salida Especifico.pdf');
     }
 
-    //PDF DE LOS VEHICULOS RETIRADOS POR RANGO DE FECHHA//
+    //PDF DE LOS VEHICULOS RETIRADOS POR RANGO DE FECHA//
     public function imprimirSalidaRango(Request $request)
     {
 
         $f1 = trim($request->get('f1'));
         $f2 = trim($request->get('f2'));
-        $f1 = '2020-05-28 16:40:00';
-        $f2 = '2020-05-27 00:00:00';
-
+       // $f1 = '2020-05-28';
+       // $f2 = '2020-05-29';
        //dd($f1, $f2);
         $salida = DB::table('salida_vehiculos as s')
             ->join('ingreso_vehiculos as i', 'i.Id_Ingreso', '=', 's.Ingreso_idIngreso')
@@ -173,8 +172,10 @@ class PdfController extends Controller
             ->join('tipo_vehiculos as tv', 'tv.Id_Tipo', '=', 'v.table1_Id_Tipo')
             ->select('i.Id_Ingreso', 'v.Placa', 'i.Fecha_Ingreso', 's.Fecha_salida', 'tv.Nombre', 's.Total')
             ->orderBy('i.Id_Ingreso', 'desc')
-            ->whereBetween('s.Fecha_salida', [$f2, $f1])->get();
-       // dd($f1,$f2,$salida);
+            ->whereBetween('s.Fecha_salida', [$f1, $f2])->get();
+
+
+        //dd($f1,$f2,$salida);
         $pdf = \PDF::loadView('Pdf.salida_fechaPDF', ['salida' => $salida]);
         $pdf->setPaper('carta', 'A4');
         return $pdf->download('Reportes especificos.pdf');
